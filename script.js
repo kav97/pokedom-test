@@ -1,7 +1,6 @@
 import pokemonArray from "./data/pokemon.js";
 
 const container = document.querySelector(".card-container");
-console.log(container);
 
 // function to capitalise first letter of name
 const capitaliseName = (name) => {
@@ -29,3 +28,16 @@ const addPokemon = () => {
 // event listener that calls the addPokemon function when the page loads
 container.addEventListener("load", addPokemon());
 
+///////////////////////////////////////////////////////////////////////////
+// extension- trying to make searching pokemon work - not sure why it doesnt work
+
+const searchBar = document.querySelector('#searchBar');
+
+searchBar.addEventListener('keyup', event => {
+    const searchString = event.target.value.toLowerCase();
+
+    const filteredPokemon = pokemonArray.filter((pokemon) => {
+        return pokemon.name.toLowerCase().includes(searchString);
+    });
+    addPokemon(filteredPokemon);
+});
